@@ -1,0 +1,3 @@
+#!/bin/sh
+rm /var/www/html/markers.json
+touch /var/www/html/markers.json
