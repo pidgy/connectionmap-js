@@ -14,7 +14,7 @@ except NameError:
 
 print "Launching geo lookup server"
 
-localnet = list(IPNetwork('192.168.1.0/24'))
+localnet = list(IPNetwork('192.168.0.0/24'))
 dns = IPAddress('8.8.8.8')
 connections = {}
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

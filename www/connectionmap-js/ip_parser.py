@@ -4,7 +4,10 @@ import signal
 from os import kill
 import psutil
 
-geo_pid = psutil.Process(int(sys.argv[1]))
+try:
+    geo_pid = psutil.Process(int(sys.argv[1]))
+except:
+    print "unknown pid for geo server, must be shut down manually"
 
 def handle_sigint(signal, frame):
     print "shutting down geo lookup server"

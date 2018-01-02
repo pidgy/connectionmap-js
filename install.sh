@@ -32,12 +32,26 @@ echo "                       ~"
 echo "by: trashbo4t"
 echo ""
 
-echo "installing dependencies..."
-apt-get install python2.7
-pip install netaddr
-pip install psutil
-apt-get install apache2
-apt-get install tcpdump
+echo "Dependencies required:"
+echo "python2.7"
+echo "|"
+echo "|__netaddr"
+echo "|__psutil"
+echo ""
+echo "apache"
+echo ""
+echo "tcpdump"
+echo ""
+echo "Do you wish to install dependencies [Y/n]?" && read yesno
+
+if [ "$yesno" = "Y" ]; then
+	echo "installing dependencies..."
+	apt-get install python2.7
+	pip install netaddr
+	pip install psutil
+	apt-get install apache2
+	apt-get install tcpdump
+fi
 
 echo "Setting up service and cron job files..."
 cp connectionmap.service /etc/systemd/system/
