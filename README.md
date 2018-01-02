@@ -22,6 +22,8 @@ If you are using a router with openWRT firmware, or your router has ssh capabili
 
 ` iptables -A POSTROUTING -t mangle -o br-lan ! -s <TEST_DEVICE_IP_ADDRESS> -j TEE --gateway <MONITORING_WORKSTATION_IP_ADDRESS> `
 
+More on the article <a href="https://www.testdevlab.com/blog/2017/08/setting-up-router-traffic-mirroring-to-wireshark/">here</a> 
+
 # How it works:
 
 ## The grunt work
@@ -39,7 +41,13 @@ If you are using a router with openWRT firmware, or your router has ssh capabili
 - The connectionmap.service file will ensure the grunt work is continually done and handled on startup
 - the connectionmapcron cronjob will purge all of the markers once every day.
 
-More on the article <a href="https://www.testdevlab.com/blog/2017/08/setting-up-router-traffic-mirroring-to-wireshark/">here</a> 
+## Known Issues
+
+- <b> markers.json is not updating fast enough: </b> Determine the address of your gateway and set the IPNetwork list in ip_collector.py to /24 subnet and focus on the least significant byte. (if your gateway is 192.168.1.1, set the IPNetwork list to '192.168.1.0/24')
+
+- <b> freegeoip.net is returning 404 errors: </b> You are probably doing too many requests, in ip_collector.py set the maxlimit variable to launch a json update every << 1 iterations instead.
+
+# Screen Captures
 
 ![alt text](https://i.imgur.com/eXG98TO.png "Marker description for connected servers")
 
