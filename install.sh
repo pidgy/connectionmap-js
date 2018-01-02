@@ -43,6 +43,7 @@ echo "Setting up service and cron job files..."
 cp connectionmap.service /etc/systemd/system/
 cp connectionmapcron /etc/cron.hourly/
 
+chmod -R 666 www/
 rm -rf /var/www
 cp -r www/ /var/
 
