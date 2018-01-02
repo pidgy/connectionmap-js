@@ -46,6 +46,9 @@ More on the article <a href="https://www.testdevlab.com/blog/2017/08/setting-up-
 - <b> markers.json is not updating fast enough: </b> Determine the address of your gateway and set the IPNetwork list in ip_collector.py to /24 subnet and focus on the least significant byte. (if your gateway is 192.168.1.1, set the IPNetwork list to '192.168.1.0/24')
 
 - <b> freegeoip.net is returning 404 errors: </b> You are probably doing too many requests, in ip_collector.py set the maxlimit variable to launch a json update every << 1 iterations instead.
+
+# Screen Captures
+
 ![alt text](https://i.imgur.com/eXG98TO.png "Marker description for connected servers")
 
 ![alt text](https://i.imgur.com/2Ya53rs.png "Side Panel navigation for overview of all local IP's")
