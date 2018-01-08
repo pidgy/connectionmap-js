@@ -1,3 +1,4 @@
+var apiKey="";
 
 document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelectorAll('#map').length > 0)
@@ -9,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var js_file = document.createElement('script');
     js_file.type = 'text/javascript';
-    js_file.src = 'https://maps.googleapis.com/maps/api/js?callback=initMap&key=ADD_YOUR_GOOGLE_MAPS_API_KEY_HERE&language=' + lang;
+    js_file.src = 'https://maps.googleapis.com/maps/api/js?callback=initMap&key='+ apiKey +'&language=' + lang;
     document.getElementsByTagName('head')[0].appendChild(js_file);
   }
 });

@@ -11,7 +11,7 @@
 PYTHON=/usr/bin/python
 PARSER=/var/www/connectionmap-js/ip_parser.py
 COLLECTOR=/var/www/connectionmap-js/ip_collector.py
- 
+
 # launch the geo-lookup server
 $PYTHON $COLLECTOR &
 GEO_PID=$!
