@@ -14,6 +14,16 @@ This web server will work for a single machine's traffic, although the best scen
 
 Simply run the install.sh script as root from the cloned repo repository and follow on-screen instructions!
 
+# Forcing Traffic To A Device
+
+Multiple methods are possible for sending all of the traffic from your gateway to the device or machine running the connectionmap.
+
+## Network Tap
+
+A physical network tap can be placed to passively collect all of the traffic in and out of your router/modem, connectionmap-js will sort connections based on DHCP assigned IP Addresses in your local subnet, so it is important you are collecting traffic routed by your gateway.
+
+With a tap in place the passive machine receiving all traffic must be the same machine running connectionmap-js
+
 ## Port Mirroring
 
 If you are using a router with openWRT firmware, or your router has ssh capabilities and iptables, you can set it up like I did with 2 iptables commands. (Thanks to Matīss Eriņš @ www.testdevlab.com)
@@ -43,9 +53,9 @@ More on the article <a href="https://www.testdevlab.com/blog/2017/08/setting-up-
 
 ## Known Issues
 
-- <b> markers.json is not updating fast enough: </b> Determine the address of your gateway and set the IPNetwork list in ip_collector.py to /24 subnet and focus on the least significant byte. (if your gateway is 192.168.1.1, set the IPNetwork list to '192.168.1.0/24')
+- <b> markers.json is not updating fast enough: </b> Determine the subnet your gateway operates in and set the IPNetwork list in ip_collector.py to a /24 filter instead of a /16 filter and focus on the least significant byte. ( i.e. if your gateway is 192.168.1.1, set the IPNetwork list to '192.168.1.0/24')
 
-- <b> freegeoip.net is returning 404 errors: </b> You are probably doing too many requests, in ip_collector.py set the maxlimit variable to launch a json update every << 1 iterations instead.
+- <b> freegeoip.net is returning 404 errors: </b> You are probably doing too many requests, in ip_collector.py set the 'maxlimit' variable to launch a json update every 'maxlimit >> 1' iterations instead.
 
 # Screen Captures
 
