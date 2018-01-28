@@ -53,9 +53,12 @@ if [ "$yesno" = "Y" ]; then
 	apt-get install tcpdump
 fi
 
-echo "Enter your Google Maps Javascript API Key: " 
-read APIKEY
-sed -i '1s/.*/var apiKey="'"$APIKEY"'";/g' www/html/js/script.js
+apiKeyLine=`cat www/html/js/script.js | head -n 1`
+if [ "$apiKeyLine" = "var apiKey=\"\";" ]; then 
+	echo "Enter your Google Maps Javascript API Key: " 
+	read APIKEY
+	sed -i '1s/.*/var apiKey="'"$APIKEY"'";/g' www/html/js/script.js
+fi
 
 echo "Setting up service and cron job files..."
 cp connectionmap.service /etc/systemd/system/

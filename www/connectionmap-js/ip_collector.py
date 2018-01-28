@@ -4,6 +4,7 @@ import urllib
 import sys
 import signal
 import io
+import contextlib
 from netaddr import *
 
 import io
@@ -36,21 +37,13 @@ def dump_json(geoinfo):
         separators=(',', ': '), ensure_ascii=False)
         outfile.write(to_unicode(str_))
 
-def dump_local(geoinfo):
-    with io.open('/var/www/html/local.json', 'w', encoding='utf8') as outfile:
-        str_ = json.dumps(geoinfo,
-        indent=4, sort_keys=True,
-        separators=(',', ': '), ensure_ascii=False)
-        outfile.write(to_unicode(str_))
-
-dump_local({'ip': lip})
-
 def geo_locate(connectionmap):
     geoconnections = []
     for dst, src in connectionmap.iteritems():
         try:
-            urlFoLaction = "http://www.freegeoip.net/json/{0}".format(dst)
-            locationInfo = json.loads(urllib.urlopen(urlFoLaction).read())
+            urlFoLaction = "https://www.freegeoip.net/json/{0}".format(dst)
+            with contextlib.closing(urllib.urlopen(urlFoLaction)) as u: 
+                locationInfo = json.loads(x)
         except:
             continue
         if str(locationInfo['latitude']) == "0":
